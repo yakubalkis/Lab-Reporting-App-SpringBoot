@@ -3,6 +3,7 @@ package com.report.entity;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 @Entity
@@ -20,6 +21,13 @@ public class Laborant {
     @Column(name = "id_no")
     private String idNo;
 
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(
+            name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Collection<Role> roles;
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "laborant_id")
     private List<Report> reports;
@@ -42,10 +50,11 @@ public class Laborant {
     public Laborant() {
     }
 
-    public Laborant(String firstName, String lastName, String idNo) {
+    public Laborant(String firstName, String lastName, String idNo, Collection<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.idNo = idNo;
+        this.roles = roles;
     }
 
     public Integer getId() {
@@ -78,5 +87,13 @@ public class Laborant {
 
     public void setIdNo(String idNo) {
         this.idNo = idNo;
+    }
+
+    public Collection<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Collection<Role> roles) {
+        this.roles = roles;
     }
 }

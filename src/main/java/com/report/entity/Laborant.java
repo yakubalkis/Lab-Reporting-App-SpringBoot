@@ -20,10 +20,12 @@ public class Laborant {
     private String lastName;
     @Column(name = "id_no")
     private String idNo;
+    @Column(name = "password")
+    private String password;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinTable(
-            name = "users_roles",
+            name = "user_roles",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id")
     )
@@ -50,10 +52,11 @@ public class Laborant {
     public Laborant() {
     }
 
-    public Laborant(String firstName, String lastName, String idNo, Collection<Role> roles) {
+    public Laborant(String firstName, String lastName, String idNo,String password, Collection<Role> roles) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.idNo = idNo;
+        this.password= password;
         this.roles = roles;
     }
 
@@ -95,5 +98,13 @@ public class Laborant {
 
     public void setRoles(Collection<Role> roles) {
         this.roles = roles;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

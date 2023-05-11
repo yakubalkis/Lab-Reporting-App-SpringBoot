@@ -50,7 +50,7 @@ public class SecurityConfiguration {
                 .invalidateHttpSession(true)
                 .clearAuthentication(true)
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("login?logout")
+                .logoutSuccessUrl("/login?logout")
                 .permitAll();
 
         http.csrf().disable();

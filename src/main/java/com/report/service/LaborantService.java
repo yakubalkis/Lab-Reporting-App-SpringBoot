@@ -1,13 +1,16 @@
 package com.report.service;
 
 import com.report.entity.Laborant;
+import org.springframework.security.core.userdetails.UserDetailsService;
 
 import java.util.List;
 
-public interface LaborantService {
+public interface LaborantService extends UserDetailsService {
     List<Laborant> findAll();
 
     Laborant findById(Integer id);
-    void save(Laborant laborant);
+
+    Laborant save(Laborant laborant);
+
     void deleteById(Integer id);
 }

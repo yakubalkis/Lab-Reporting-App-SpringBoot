@@ -53,7 +53,7 @@ public class MainController {
     @PostMapping("/reports/save")
     public String saveEmployee(@ModelAttribute("report") Report report){
 
-        if(report.getId() == 0){ // if new report is being added
+        if(report.getId() == null){ // if new report is being added
             Authentication auth = SecurityContextHolder.getContext().getAuthentication();
             Laborant currentLaborant = laborantService.findLaborantByIdNo(auth.getName());
 
@@ -65,6 +65,8 @@ public class MainController {
         return "redirect:/";
     }
 
+
+
     @GetMapping("/reports/showFormForUpdate")
     public String showFormForUpdate(@RequestParam("reportId") Integer id, Model model){
         // get report from service
@@ -72,5 +74,13 @@ public class MainController {
         model.addAttribute("report" , report);
 
         return "report-form";
+    }
+
+    @GetMapping("/reports/delete")
+    public String delete(@RequestParam("reportId") Integer id){
+
+        reportService.deleteById(id);
+
+        return "redirect:/";
     }
 }

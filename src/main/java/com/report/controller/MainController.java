@@ -9,10 +9,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -56,14 +53,24 @@ public class MainController {
     @PostMapping("/reports/save")
     public String saveEmployee(@ModelAttribute("report") Report report){
 
-        Authentication auth = SecurityContextHolder.getContext().getAuthentication();
-        Laborant currentLaborant = laborantService.findLaborantByIdNo(auth.getName());
-        currentLaborant.addReport(report);
+        if(report.getId() == 0){ // if new report is being added
+            Authentication auth = SecurityContextHolder.getContext().getAuthentication();
+            Laborant currentLaborant = laborantService.findLaborantByIdNo(auth.getName());
 
-        //laborantService.save(currentLaborant);
+            currentLaborant.addReport(report);
+        }
+
         reportService.save(report);
 
         return "redirect:/";
     }
 
+    @GetMapping("/reports/showFormForUpdate")
+    public String showFormForUpdate(@RequestParam("reportId") Integer id, Model model){
+        // get report from service
+        Report report = reportService.findById(id);
+        model.addAttribute("report" , report);
+
+        return "report-form";
+    }
 }

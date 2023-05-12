@@ -1,9 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <title>Home Page</title>
+    <style>
+        .container{
+            margin-left: 3rem;
+        }
+        .cont-header{
+            display: flex;
+            flex-direction: row;
+        }
+        .btnAdd{
+            margin-left: 5rem;
+            height: 30px;
+            margin-top: 25px;
+        }
+    </style>
 </head>
 <body>
     <!-- create navigation bar (header) -->
@@ -32,8 +46,15 @@
 
         <br><br>
         Welcome <th:block th:text="${username}"/>
+        <div class="cont-header">
+            <h1>Reports</h1>
+            <!-- Add a button -->
+            <a th:href="@{/reports/add}"
+               class="btn btn-primary btn-sm mb-3 btnAdd">
+                Add Report
+            </a>
+        </div>
 
-        <h1>Your Personal Reports</h1>
 
         <table class="table table-bordered table-striped">
 
@@ -58,11 +79,23 @@
                     <td th:text="${tempReport.diagnosisDetail}"/>
                     <td th:text="${tempReport.date}"/>
                     <td th:text="${tempReport.imageName}"/>
+                    <!-- Add update button link -->
+                    <td>
+                        <a th:href="@{/reports/showFormForUpdate(reportId=${tempReport.id})}"
+                                class="btn btn-info btn-sm">
+                            Update
+                        </a>
+                        <!-- Add delete button link -->
+                        <a th:href="@{/reports/delete(reportId=${tempReport.id})}"
+                                class="btn btn-danger btn-sm"
+                                onclick="if (!(confirm('Are you sure you want to delete this user?'))) return false">
+                            Delete
+                        </a>
 
+                    </td>
 
                 </tr>
             </tbody>
-
         </table>
     </div>
 

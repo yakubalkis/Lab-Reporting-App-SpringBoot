@@ -107,4 +107,17 @@ public class Laborant {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "Laborant{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", idNo='" + idNo + '\'' +
+                ", password='" + password + '\'' +
+                ", roles=" + roles +
+                ", reports=" + reports +
+                '}';
+    }
 }

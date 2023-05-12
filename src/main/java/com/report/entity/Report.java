@@ -36,4 +36,82 @@ public class Report {
         this.date = date;
         this.imageName = imageName;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getTcNo() {
+        return tcNo;
+    }
+
+    public void setTcNo(String tcNo) {
+        this.tcNo = tcNo;
+    }
+
+    public String getDiagnosisTitle() {
+        return diagnosisTitle;
+    }
+
+    public void setDiagnosisTitle(String diagnosisTitle) {
+        this.diagnosisTitle = diagnosisTitle;
+    }
+
+    public String getDiagnosisDetail() {
+        return diagnosisDetail;
+    }
+
+    public void setDiagnosisDetail(String diagnosisDetail) {
+        this.diagnosisDetail = diagnosisDetail;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
+    }
+
+    @Override
+    public String toString() {
+        return "Report{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", tcNo='" + tcNo + '\'' +
+                ", diagnosisTitle='" + diagnosisTitle + '\'' +
+                ", diagnosisDetail='" + diagnosisDetail + '\'' +
+                ", date='" + date + '\'' +
+                ", imageName='" + imageName + '\'' +
+                '}';
+    }
 }

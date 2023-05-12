@@ -17,7 +17,7 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="#" th:href="@{/}">
-                    Registration and Login Module
+                    Lab Reporting App
                 </a>
             </div>
             <div id="navbar" class="collapse navbar-collapse">
@@ -28,10 +28,42 @@
         </div>
     </nav>
     <br><br>
-    <div class="container">
-        <h1>Lab Reporting App</h1>
+    <div class="container" th:object="${username}">
 
-        Welcome <span sec:authentication="principal.username"> User</span>
+        <br><br>
+        Welcome <th:block th:text="${username}"/>
+
+        <h1>Your Personal Reports</h1>
+
+        <table class="table table-bordered table-striped">
+
+            <thead class="table-dark">
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>TC No</th>
+                    <th>Diagnosis Title</th>
+                    <th>Diagnosis Detail</th>
+                    <th>Date</th>
+                    <th>Report File</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each = "tempReport : ${reports}">
+                    <td th:text="${tempReport.firstName}"/>
+                    <td th:text="${tempReport.lastName}"/>
+                    <td th:text="${tempReport.tcNo}"/>
+                    <td th:text="${tempReport.diagnosisTitle}"/>
+                    <td th:text="${tempReport.diagnosisDetail}"/>
+                    <td th:text="${tempReport.date}"/>
+                    <td th:text="${tempReport.imageName}"/>
+
+
+                </tr>
+            </tbody>
+
+        </table>
     </div>
 
 

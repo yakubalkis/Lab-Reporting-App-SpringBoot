@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+          crossorigin="anonymous">
+    <title>Save Report</title>
+</head>
+<body>
+    <div class="container">
+        <h3>Report Directory</h3>
+        <hr>
+
+        <p class="h4 mb-4">Save Report</p>
+
+        <form action="#" th:action="@{/reports/save}" th:object="${report}" method="post">
+
+            <!-- Add hidden form field to handle the update-->
+            <input type="hidden" th:field="*{id}"> <!--tells your app which employee to update -->
+
+            <input type="text" th:field="*{firstName}" class="form-control mb-4 w-25" placeholder="First name">
+
+            <input type="text" th:field="*{lastName}" class="form-control mb-4 w-25" placeholder="Last name">
+
+            <input type="text" th:field="*{tcNo}" class="form-control mb-4 w-25" placeholder="TC No">
+
+            <input type="text" th:field="*{diagnosisTitle}" class="form-control mb-4 w-25" placeholder="Diagnosis Title">
+
+            <input type="text" th:field="*{diagnosisDetail}" class="form-control mb-4 w-25" placeholder="Diagnosis Detail">
+
+            <input type="text" th:field="*{date}" class="form-control mb-4 w-25" placeholder="Date">
+
+            <input type="text" th:field="*{imageName}" class="form-control mb-4 w-25" placeholder="Image Name">
+
+            <button type="submit" class="btn btn-info col-2">Save</button>
+
+        </form>
+
+        <a th:href="@{/}">Back to Reports List</a>
+    </div>
+</body>
+</html>

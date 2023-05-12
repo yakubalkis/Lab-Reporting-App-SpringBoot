@@ -13,4 +13,6 @@ public interface LaborantService extends UserDetailsService {
     Laborant save(Laborant laborant);
 
     void deleteById(Integer id);
+
+    Laborant findLaborantByIdNo(String idNo);
 }

@@ -65,6 +65,11 @@ public class LaborantServiceImpl implements LaborantService{
     }
 
     @Override
+    public Laborant findLaborantByIdNo(String idNo) {
+        return laborantRepository.findLaborantByIdNo(idNo);
+    }
+
+    @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
         Laborant laborant = laborantRepository.findByIdNo(username);
